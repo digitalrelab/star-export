@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useStore } from '../store';
 import { getPlatformConfig } from '../config/platforms';
+import { useTheme } from '../contexts/ThemeContext';
 
 const HistoryPage: React.FC = () => {
   const { jobs, clearCompleted } = useStore();
+  const { colors } = useTheme();
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -58,12 +60,18 @@ const HistoryPage: React.FC = () => {
                           {platform?.icon || '📄'}
                         </div>
                         <div>
-                          <h3 className="text-lg font-semibold text-gray-900">
+                          <h3 
+                            className="text-lg font-semibold"
+                            style={{ color: colors.text.primary }}
+                          >
                             {platform?.displayName || job.platform} Export
                           </h3>
-                          <p className="text-sm text-gray-600">
-                            {job.createdAt.toLocaleDateString()} at{' '}
-                            {job.createdAt.toLocaleTimeString()}
+                          <p 
+                            className="text-sm"
+                            style={{ color: colors.text.secondary }}
+                          >
+                            {new Date(job.createdAt).toLocaleDateString()} at{' '}
+                            {new Date(job.createdAt).toLocaleTimeString()}
                           </p>
                         </div>
                       </div>
