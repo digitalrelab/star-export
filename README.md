@@ -33,26 +33,45 @@ Starchive empowers you to reclaim your digital memories from major social platfo
 
 ## 🚀 Quick Start
 
-### Using Docker (Recommended)
+### Deploy to Vercel (Recommended)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdigitalrelab%2Fstar-export)
+
+1. **Fork this repository** to your GitHub account
+2. **Connect to Vercel**:
+   - Import your forked repository to Vercel
+   - Configure environment variables (see below)
+   - Deploy automatically
+
+3. **Configure Environment Variables** in Vercel dashboard:
+   ```env
+   # Required for production
+   NODE_ENV=production
+   FACEBOOK_APP_ID=your_facebook_app_id
+   FACEBOOK_APP_SECRET=your_facebook_app_secret
+   GOOGLE_CLIENT_ID=your_google_client_id
+   GOOGLE_CLIENT_SECRET=your_google_client_secret
+   SESSION_SECRET=your_session_secret_key
+   FRONTEND_URL=https://your-app-name.vercel.app
+   VITE_API_BASE_URL=https://your-app-name.vercel.app/api
+   ```
+
+### Local Development
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/star-export.git
+git clone https://github.com/digitalrelab/star-export.git
 cd star-export
 
-# Setup environment
-make setup
-# Edit .env files with your credentials
+# Install all dependencies
+npm run install:all
 
 # Start development environment
-make dev
-
-# Run database migrations
-make db-migrate-dev
+npm run dev
 
 # Access the app
-# Frontend: http://localhost:3000
-# API: http://localhost:5000
+# Frontend: http://localhost:5173
+# API: http://localhost:3001
 ```
 
 ### Manual Setup
@@ -120,11 +139,43 @@ PORT=5000
 NODE_ENV=development
 ```
 
-#### Frontend (.env)
+#### Frontend (.env.local for development)
 ```env
-VITE_API_URL=http://localhost:5000
-VITE_WS_URL=ws://localhost:5000
+VITE_API_BASE_URL=http://localhost:3001
 ```
+
+## 🚀 Vercel Deployment Guide
+
+### Automatic Deployment
+1. Fork this repository
+2. Import to Vercel
+3. Configure environment variables
+4. Deploy automatically on every push
+
+### Environment Variables for Vercel
+Set these in your Vercel dashboard under Settings > Environment Variables:
+
+```env
+NODE_ENV=production
+FACEBOOK_APP_ID=your_facebook_app_id
+FACEBOOK_APP_SECRET=your_facebook_app_secret  
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+SESSION_SECRET=your_session_secret_key
+FRONTEND_URL=https://your-app-name.vercel.app
+VITE_API_BASE_URL=https://your-app-name.vercel.app/api
+FACEBOOK_CALLBACK_URL=https://your-app-name.vercel.app/api/auth/facebook/callback
+GOOGLE_CALLBACK_URL=https://your-app-name.vercel.app/api/auth/google/callback
+```
+
+### OAuth Configuration
+After deployment, update your OAuth apps:
+
+**Facebook App Settings:**
+- Valid OAuth Redirect URIs: `https://your-app-name.vercel.app/api/auth/facebook/callback`
+
+**Google Cloud Console:**
+- Authorized redirect URIs: `https://your-app-name.vercel.app/api/auth/google/callback`
 
 ## 📚 Architecture
 
