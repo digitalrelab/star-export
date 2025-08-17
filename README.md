@@ -31,6 +31,12 @@ Starchive empowers you to reclaim your digital memories from major social platfo
 - GDPR/CCPA compliant
 - Self-hosting option
 
+### User Experience
+- **In-App Help System** - Comprehensive help documentation with interactive FAQ
+- **Real-time Progress** - Live export status tracking
+- **Theme Support** - Dark/light mode with full customization
+- **Responsive Design** - Works on desktop, tablet, and mobile
+
 ## 🚀 Quick Start
 
 ### Deploy to Vercel (Recommended)
@@ -103,6 +109,8 @@ npm run dev
 ## 🔧 Configuration
 
 ### Required API Keys
+
+> **📖 Detailed Setup Guide**: See `OAUTH_SETUP_GUIDE.md` for complete step-by-step OAuth configuration instructions.
 
 1. **Google OAuth** (for YouTube)
    - Create project at [Google Cloud Console](https://console.cloud.google.com)

@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **In-App Help System**
+  - Comprehensive help page with 6 main sections (Getting Started, Platform Setup, Export Options, Troubleshooting, FAQ, Contact Support)
+  - Interactive FAQ with search functionality (10+ questions)
+  - Platform-specific setup guides for all 6 supported platforms
+  - Export format comparison and media download documentation
+  - Troubleshooting guides for common issues
+  - Fully responsive design with theme integration
+  - Navigation integration with HelpCircleIcon in sidebar
+
 ## [2.1.0] - 2025-08-14
 
 ### Added - Enhanced Media Export System

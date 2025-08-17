@@ -156,7 +156,8 @@ VITE_NODE_ENV=development
 ```env
 # Server Configuration
 NODE_ENV=development
-PORT=5000
+PORT=3001
+FRONTEND_URL=http://localhost:5173
 
 # Database
 DATABASE_URL=postgresql://starexport:password@localhost:5432/starexport
@@ -165,19 +166,54 @@ DATABASE_URL=postgresql://starexport:password@localhost:5432/starexport
 REDIS_URL=redis://:password@localhost:6379
 
 # Security
-JWT_SECRET=your-jwt-secret-key
+SESSION_SECRET=your_secure_session_secret_min_32_characters
 ENCRYPTION_KEY=32-character-encryption-key
 
-# OAuth Credentials
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
-FACEBOOK_APP_ID=your-facebook-app-id
-FACEBOOK_APP_SECRET=your-facebook-app-secret
+# OAuth Credentials - Get from respective developer consoles
+GOOGLE_CLIENT_ID=your_actual_google_client_id_here
+GOOGLE_CLIENT_SECRET=your_actual_google_client_secret_here
+FACEBOOK_APP_ID=your_actual_facebook_app_id_here
+FACEBOOK_APP_SECRET=your_actual_facebook_app_secret_here
 
 # Export Configuration
 EXPORT_STORAGE_PATH=./exports
 MAX_EXPORT_SIZE_MB=5000
 EXPORT_RETENTION_DAYS=30
+```
+
+### OAuth Setup
+
+> **📖 Detailed Setup Guide**: See `OAUTH_SETUP_GUIDE.md` for complete OAuth configuration instructions.
+
+The application requires OAuth credentials from Google and Facebook to enable platform integrations:
+
+#### Google OAuth (YouTube API)
+1. **Create a Google Cloud Project** at [Google Cloud Console](https://console.cloud.google.com/)
+2. **Enable YouTube Data API v3**
+3. **Create OAuth 2.0 Client ID credentials**
+4. **Configure redirect URIs**:
+   - Development: `http://localhost:3001/auth/youtube/callback`
+   - Production: `https://yourdomain.com/auth/youtube/callback`
+
+#### Facebook OAuth (Facebook/Instagram API)
+1. **Create a Facebook App** at [Facebook Developers](https://developers.facebook.com/)
+2. **Add Facebook Login product**
+3. **Configure OAuth redirect URIs**:
+   - Development: `http://localhost:3001/auth/facebook/callback`
+   - Production: `https://yourdomain.com/auth/facebook/callback`
+4. **Request required permissions**: `email`, `public_profile`, `pages_show_list`, `instagram_basic`
+
+#### Quick Setup Commands
+```bash
+# Generate secure session secret
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+
+# Copy environment templates
+cp server/.env.example server/.env
+cp star-export-app/.env.example star-export-app/.env
+
+# Update with your actual OAuth credentials
+# Edit server/.env with your Google and Facebook credentials
 ```
 
 ## 🏗️ Architecture Details

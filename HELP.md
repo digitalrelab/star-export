@@ -8,7 +8,8 @@
 4. [Export Options](#export-options)
 5. [Troubleshooting](#troubleshooting)
 6. [FAQ](#frequently-asked-questions)
-7. [Technical Support](#technical-support)
+7. [In-App Help System](#in-app-help-system)
+8. [Technical Support](#technical-support)
 
 ## Getting Started
 
@@ -246,6 +247,63 @@ Different platforms have different limits:
 2. Check available disk space
 3. Verify download completed
 4. Try alternative extraction tools
+
+## In-App Help System
+
+### Accessing Help
+
+Star Export includes a comprehensive in-app help system accessible through:
+- **Navigation Menu**: Click "Help" in the sidebar navigation
+- **Direct URL**: Navigate to `/help` in your browser
+- **Help Icon**: Look for the help circle icon in the navigation
+
+### Help Sections Available
+
+#### 1. **Getting Started**
+- Quick start guide with step-by-step instructions
+- Security information and OAuth explanation
+- Platform overview and capabilities
+
+#### 2. **Platform Setup**  
+- Detailed setup guides for all supported platforms
+- Platform-specific requirements and permissions
+- Visual cards showing each platform's capabilities
+
+#### 3. **Export Options**
+- JSON vs CSV format comparison with use cases
+- Media download functionality explanation
+- Platform-specific limits and rate restrictions
+
+#### 4. **Troubleshooting**
+- Common connection issues and solutions
+- Export problems and troubleshooting steps
+- Performance optimization tips
+
+#### 5. **FAQ**
+- 10+ frequently asked questions with detailed answers
+- Real-time search functionality to find specific topics
+- Expandable question/answer format for easy browsing
+
+#### 6. **Contact Support**
+- Response time expectations for different issue types
+- What information to include in support requests
+- Self-help resources and troubleshooting steps
+
+### Interactive Features
+
+- **Search Functionality**: Use the search bar in the FAQ section to quickly find answers
+- **Section Navigation**: Click through different help sections using the sidebar
+- **Expandable Content**: Click on FAQ questions to see detailed answers
+- **Theme Support**: Help content adapts to your selected light/dark theme
+
+### Self-Service Benefits
+
+The in-app help system allows you to:
+- Find answers immediately without waiting for support
+- Learn about advanced features and capabilities  
+- Troubleshoot common issues independently
+- Access platform-specific setup instructions
+- Understand export options and limitations
 
 ## Frequently Asked Questions
 
