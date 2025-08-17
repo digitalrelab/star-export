@@ -406,6 +406,115 @@ cd server
 npm run build
 ```
 
+### Vercel Deployment (Recommended)
+
+Vercel provides the easiest deployment option with automatic builds and serverless functions.
+
+#### Prerequisites
+- Vercel account
+- GitHub repository
+- OAuth app credentials (Facebook, Google)
+
+#### Deploy to Vercel
+1. **Fork/Clone Repository**
+   ```bash
+   git clone https://github.com/digitalrelab/star-export.git
+   cd star-export
+   ```
+
+2. **Import to Vercel**
+   - Connect your GitHub account to Vercel
+   - Import the repository
+   - Vercel will auto-detect the configuration from `vercel.json`
+
+3. **Configure Environment Variables**
+   In Vercel Dashboard → Settings → Environment Variables:
+   ```env
+   NODE_ENV=production
+   FACEBOOK_APP_ID=your_facebook_app_id
+   FACEBOOK_APP_SECRET=your_facebook_app_secret
+   GOOGLE_CLIENT_ID=your_google_client_id
+   GOOGLE_CLIENT_SECRET=your_google_client_secret
+   SESSION_SECRET=your_32_character_session_secret
+   FRONTEND_URL=https://your-app-name.vercel.app
+   VITE_API_BASE_URL=https://your-app-name.vercel.app/api
+   FACEBOOK_CALLBACK_URL=https://your-app-name.vercel.app/api/auth/facebook/callback
+   GOOGLE_CALLBACK_URL=https://your-app-name.vercel.app/api/auth/google/callback
+   ```
+
+4. **Update OAuth Applications**
+   
+   **Facebook App Settings:**
+   - Go to [Facebook Developers](https://developers.facebook.com)
+   - Navigate to your app → App Settings → Basic
+   - Add to Valid OAuth Redirect URIs: `https://your-app-name.vercel.app/api/auth/facebook/callback`
+   
+   **Google Cloud Console:**
+   - Go to [Google Cloud Console](https://console.cloud.google.com)
+   - Navigate to APIs & Services → Credentials
+   - Edit OAuth 2.0 Client ID
+   - Add to Authorized redirect URIs: `https://your-app-name.vercel.app/api/auth/google/callback`
+
+5. **Deploy**
+   - Push to main branch to trigger automatic deployment
+   - Monitor build logs in Vercel dashboard
+   - Test the deployed application
+
+#### Vercel Configuration Files
+
+The repository includes these Vercel-specific files:
+
+**`vercel.json`**
+```json
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "star-export-app/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    },
+    {
+      "src": "server/package.json",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "server/src/app.ts" },
+    { "src": "/(.*)", "dest": "star-export-app/dist/index.html" }
+  ]
+}
+```
+
+**Root `package.json`**
+```json
+{
+  "scripts": {
+    "vercel-build": "cd star-export-app && npm install && npm run build"
+  }
+}
+```
+
+#### Vercel Deployment Features
+- **Automatic Deployments**: Every push to main branch
+- **Preview Deployments**: For pull requests
+- **Serverless Functions**: Backend API routes
+- **Edge Caching**: Fast global content delivery
+- **Environment Variables**: Secure configuration management
+- **Custom Domains**: Add your own domain easily
+
+#### Vercel Limitations
+- **Serverless Function Timeout**: 60 seconds max (configurable in vercel.json)
+- **Memory Limits**: 1GB RAM for serverless functions
+- **File System**: Read-only, use temporary files for exports
+- **Background Jobs**: Limited support, consider external queue services
+
+#### Monitoring Vercel Deployment
+- **Function Logs**: Vercel Dashboard → Functions → View Logs
+- **Performance**: Built-in Web Vitals tracking
+- **Error Tracking**: Integration with Sentry, Bugsnag
+- **Analytics**: Vercel Analytics for usage insights
+
 ### Docker Production
 ```bash
 # Start production stack
